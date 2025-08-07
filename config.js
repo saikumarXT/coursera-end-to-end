@@ -1,5 +1,5 @@
-const JWT_USER_KEY="GONNA CRACK THE GSOC";
-const JWT_ADMIN_KEY='LETS CRACK THE IT MAN SAI PATEL';
+const JWT_USER_KEY=process.env.JWT_USER_KEY;
+const JWT_ADMIN_KEY=process.env.JWT_ADMIN_KEY;
 
 module.exports={
     JWT_ADMIN_KEY:JWT_ADMIN_KEY,

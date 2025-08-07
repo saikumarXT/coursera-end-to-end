@@ -1,3 +1,9 @@
+require('dotenv').config()
+console.log("Mongo URL:", process.env.MONGO_URL);
+
+
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const { userRouter } = require('./routes/user');
@@ -25,8 +31,8 @@ app.use('/api/v1/course',coursesRouter);
 
 
 async function main(){
-await mongoose.connect('mongodb+srv://sai:1J5IOyJeToqHI0CR@cluster0.3vp3tpw.mongodb.net/')
-app.listen(3005,()=>{
-    console.log('http://local:3005')
+await mongoose.connect(process.env.MONGO_URL)
+app.listen(3000,()=>{
+    console.log('http://local:3000')
 });
 }

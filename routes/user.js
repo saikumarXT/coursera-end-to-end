@@ -2,10 +2,10 @@ const {Router} = require('express');
 const bcrypt=require('bcrypt');
 const userRouter = Router();
 const JWT=require('jsonwebtoken');
-const {userModel} = require('../db');
+const {userModel, courseModel, purchaseModel} = require('../db');
 
 const {JWT_USER_KEY}=require('../config')
-const {userMiddleware}=require('../userMiddleware');
+const {userMiddleware}=require('../middleware/userMiddleware');
 
 
 userRouter.post('/signup',async function(req,res){
@@ -45,8 +45,8 @@ res.json({ message: "invalid credentials of user" })
 }
 
 else{
-const token =await JWT.sign({ userid : user._id.toString() },JWT_USER_KEY);
-res.json({ token:token }) 
+const token =await JWT.sign({ userid : user._id },JWT_USER_KEY);
+res.json({ token : token }) 
 console.log('token generated successfully for user')
      }  
   }
@@ -57,9 +57,48 @@ catch(err){
    }
 })
 
-userRouter.get('/purchases', userMiddleware , async function(req,res){
+userRouter.post('/purchase', userMiddleware , async function(req,res){
+    const  userId=req.userId;
+  
+  try{
+    const courseId=req.body.courseId;
+    await purchaseModel.create({
+         userId,
+        courseId
+    })
+
     res.json({
-        message:'all your purchases'
+    message:'all your purchases'
+    })
+}
+
+catch(err){
+    res.json({  
+        message:err.message
+    })
+}
+
+})
+
+userRouter.get('/preview', async function(req,res){
+    const courses=await courseModel.find({}); 
+    res.json({
+     courses
+    })
+})
+
+userRouter.get('/purchases', middleware,async function(req,res){
+ const userId=req.userId;
+ const purchases = await purchaseModel.find({
+    _id:userId
+ })
+
+ const purchasedData=await courseModel.find({
+    _id:{  $in: purchases.map(x => x.courseId)  }
+ })
+    res.json({
+     purchases,
+     purchasedData
     })
 })
 

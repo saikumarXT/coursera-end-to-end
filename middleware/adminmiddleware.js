@@ -2,20 +2,19 @@
 const JWT = require('jsonwebtoken');
 const{ JWT_ADMIN_KEY } = require('../config');
 
-async function adminMiddleware( ){
-
-const token = req.body.headers;
+async function adminMiddleware(req,res,next){
+ try{
+const token= req.headers.token;
 const decodedData = JWT.verify(token,JWT_ADMIN_KEY);
-
 if(decodedData){
-req.body=userId;
+req.userId=decodedData.userId;
 next();
-  }
-  else{
-    res.status(403).json({
-        message:'you are not sign in'
-    })
-  }
+    }
+}
+  catch(err){
+  res.json({
+  message:err.message})
+    }
 }
 
 module.exports={

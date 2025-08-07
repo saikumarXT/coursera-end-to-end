@@ -1,5 +1,5 @@
-const { Router } = require('express');
-
+/*const { Router } = require('express');
+const {userModel, courseModel, purchaseModel} = require('../db');
 //const express=require('router);
 //const router=express.router;
 
@@ -11,9 +11,10 @@ coursesRouter.get('/purchase',async function(req,res){
 })
 
 
-coursesRouter.get('/preview',async function(req,res){
+userRouter.get('/preview', async function(req,res){
+    const courses=await courseModel.find({}); 
     res.json({
-        message:'preview'
+     courses
     })
 })
 
@@ -21,3 +22,4 @@ coursesRouter.get('/preview',async function(req,res){
 module.exports={
     coursesRouter:coursesRouter
 }
+*/
