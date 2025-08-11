@@ -1,0 +1,65 @@
+body{
+    background-image:url('images/car.jpg');
+      background-repeat: no-repeat;
+        background-size: cover;
+}
+.main{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+}
+.card{
+    
+     background: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgb(99, 95, 133);
+    height: 38vh;
+    width: 500px;
+}
+.input-fields{
+display: flex;
+flex-direction: column;
+margin-top: 50px;
+}
+
+
+input{
+    padding: 10px;
+    margin: 10px;
+    width: 350px;
+    margin-left:60px;
+    background: #dfe4ea;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    border: 0px solid rgba(0, 0, 0, 0.842);
+    border-radius: 1px solid ;
+    box-shadow: 0 8px 32px 0 rgb(99, 95, 133);
+    font-family:cursive;
+     font-size: large;
+}
+
+button{
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+     background: #dfe4ea;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    border: 0px solid rgba(0, 0, 0, 0.842);
+    border-radius: 1px solid ;
+    box-shadow: 0 8px 32px 0 rgb(99, 95, 133);
+    font-family: cursive;
+    columns: black;
+    font-size: medium ;
+}
+.signup{
+margin-left: 67px;
+
+}
+.signin{
+margin-left: 45px;
+}
